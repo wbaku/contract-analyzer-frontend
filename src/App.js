@@ -1,25 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import ListOfChecks from "./components/ListOfChecks";
+import React, {useState} from "react";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+        const [listOfChecks, setListOfChecks] = useState([])
+
+        async function fetchTests() {
+
+
+            const response = await fetch('/restContractChecks')
+            const data = await response.json();
+
+            setListOfChecks(data.listOfChecks)
+
+        }
+
+        fetchTests()
+
+
+    return (
+        <div className="App">
+            <ListOfChecks checks={listOfChecks}></ListOfChecks>
+        </div>
+    );
+
 }
 
 export default App;
