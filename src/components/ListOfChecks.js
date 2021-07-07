@@ -1,16 +1,23 @@
 import React from "react";
+import {ListGroup, ListGroupItem} from "reactstrap";
 
 const ListOfChecks = (props) => {
 
-    const list = props.checks.map((checks, index) =>
+    const list = props.checks.map((check, index) =>
 
-        <li key={index}>
-            {checks.toString()}
-        </li>
+        <ListGroup>
+        <ListGroupItem  key={index}>
+            {check}
+        </ListGroupItem>
+        </ListGroup>
     );
 
-    return list;
-
+    return (
+        <ListGroup>
+            Available Checks:
+            {list}
+        </ListGroup>
+    );
 }
 
 export default ListOfChecks

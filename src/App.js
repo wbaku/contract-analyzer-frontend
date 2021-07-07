@@ -22,6 +22,8 @@ function App() {
 
     return (
         <div className="App">
+            <h1 className={"app-header"}>Contract-Analyzer</h1>
+
             <ListOfChecks checks={listOfChecks}></ListOfChecks>
         </div>
     );
