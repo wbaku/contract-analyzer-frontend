@@ -1,23 +1,24 @@
 import './App.css';
 import ListOfChecks from "./components/ListOfChecks";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 function App() {
 
 
-        const [listOfChecks, setListOfChecks] = useState([])
+    const [listOfChecks, setListOfChecks] = useState(['Loading checks...'])
 
-        async function fetchTests() {
+    async function fetchTests() {
 
 
-            const response = await fetch('/restContractChecks')
-            const data = await response.json();
+        const response = await fetch('/restContractChecks')
+        const dataReceived = await response.json();
 
-            setListOfChecks(data.listOfChecks)
+        setListOfChecks(dataReceived.listOfChecks)
 
-        }
-
+    }
+    useEffect(() => {
         fetchTests()
+    });
 
 
     return (

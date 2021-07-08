@@ -1,22 +1,36 @@
-import React from "react";
-import {ListGroup, ListGroupItem} from "reactstrap";
+import React, {useState} from "react";
+import {Button, CardBody, Container, ListGroup} from "reactstrap";
 
 const ListOfChecks = (props) => {
 
-    const list = props.checks.map((check, index) =>
+    const [selectedChecks, setSelected] = useState([]);
 
-        <ListGroup>
-        <ListGroupItem  key={index}>
+
+    const onCheckCLick = (selected) => {
+
+        const index = selectedChecks.indexOf(selected);
+        if (index < 0) {
+            selectedChecks.push(selected);
+        } else {
+            selectedChecks.splice(index, 1);
+        }
+        setSelected([...selectedChecks]);
+        console.log(selectedChecks)
+
+    }
+
+
+    const list = props.checks.map((check) =>
+
+        <Button onClick={() => onCheckCLick(check)} active={selectedChecks.includes(check)} >
             {check}
-        </ListGroupItem>
-        </ListGroup>
+        </Button>
     );
-
     return (
-        <ListGroup>
+            <ListGroup>
             Available Checks:
             {list}
-        </ListGroup>
+            </ListGroup>
     );
 }
 
