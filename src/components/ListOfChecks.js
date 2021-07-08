@@ -1,12 +1,13 @@
 import React, {useState} from "react";
-import {Button, CardBody, Container, ListGroup} from "reactstrap";
+import {Button, ListGroup} from "reactstrap";
 
 const ListOfChecks = (props) => {
+
 
     const [selectedChecks, setSelected] = useState([]);
 
 
-    const onCheckCLick = (selected) => {
+    const onCheckClick = (selected) => {
 
         const index = selectedChecks.indexOf(selected);
         if (index < 0) {
@@ -16,21 +17,19 @@ const ListOfChecks = (props) => {
         }
         setSelected([...selectedChecks]);
         console.log(selectedChecks)
-
+        props.checkHandler(selectedChecks)
     }
 
-
     const list = props.checks.map((check) =>
-
-        <Button onClick={() => onCheckCLick(check)} active={selectedChecks.includes(check)} >
+        <Button onClick={() => onCheckClick(check)} active={selectedChecks.includes(check)}>
             {check}
         </Button>
     );
     return (
-            <ListGroup>
+        <ListGroup>
             Available Checks:
             {list}
-            </ListGroup>
+        </ListGroup>
     );
 }
 

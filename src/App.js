@@ -1,13 +1,16 @@
 import './App.css';
 import ListOfChecks from "./components/ListOfChecks";
 import React, {useEffect, useState} from "react";
+import CheckRunner from "./components/CheckRunner";
 
 function App() {
 
 
     const [listOfChecks, setListOfChecks] = useState(['Loading checks...'])
 
-    async function fetchTests() {
+    const [checksToRun, setChecksToRun] = useState([''])
+
+    async function fetchListOfChecks() {
 
 
         const response = await fetch('/restContractChecks')
@@ -16,16 +19,26 @@ function App() {
         setListOfChecks(dataReceived.listOfChecks)
 
     }
-    useEffect(() => {
-        fetchTests()
-    });
 
+    const checkHandler = check => {
+
+        console.log("im in check handler " +  check)
+        setChecksToRun(check)
+    }
+
+    useEffect(() => {
+        fetchListOfChecks()
+    });
 
     return (
         <div className="App">
             <h1 className={"app-header"}>Contract-Analyzer</h1>
 
-            <ListOfChecks checks={listOfChecks}></ListOfChecks>
+
+            <ListOfChecks checks={listOfChecks} checkHandler={checkHandler}/>
+            <CheckRunner checkToRun={checksToRun}/>
+
+
         </div>
     );
 
