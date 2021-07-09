@@ -6,21 +6,24 @@ const CheckRunner = (props) => {
 
     const checkToRun = props.checkToRun
 
-    const [{report}, setReport] = useState(['No checks were run']);
+    const [report, setReport] = useState(['No checks were run']);
     const [host, setHost] = useState(['Host unknown']);
 
 
     async function runCheck() {
 
         console.log("im in runCheck: " + checkToRun)
-        const response = await fetch(host + '/checks/' + checkToRun + '/run', {
+        const response = await fetch('/checks/' + checkToRun + '/run?url='+host, {
             method: 'POST',
             headers: {
+                'Accept': 'application/json',
+                // 'Access-Control-Allow-Origin': host,
                 'Content-Type': 'application/json'
             },
-            mode:'no-cors'
+            // mode:'cors'
         })
         const dataReceived = await response.json();
+
         setReport(JSON.stringify(dataReceived))
     }
 

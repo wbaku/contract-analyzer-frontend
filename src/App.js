@@ -12,17 +12,14 @@ function App() {
 
     async function fetchListOfChecks() {
 
-
         const response = await fetch('/restContractChecks')
         const dataReceived = await response.json();
-
         setListOfChecks(dataReceived.listOfChecks)
-
     }
 
     const checkHandler = check => {
 
-        console.log("im in check handler " +  check)
+        console.log("im in check handler " + check)
         setChecksToRun(check)
     }
 
@@ -37,8 +34,6 @@ function App() {
 
             <ListOfChecks checks={listOfChecks} checkHandler={checkHandler}/>
             <CheckRunner checkToRun={checksToRun}/>
-
-
         </div>
     );
 
