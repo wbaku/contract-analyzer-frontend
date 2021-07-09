@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Button, Card, CardBody, Form, Input, InputGroup, InputGroupAddon} from "reactstrap";
+import {Button, Form, Input, InputGroup, InputGroupAddon, Table} from "reactstrap";
 
 
 const CheckRunner = (props) => {
@@ -12,8 +12,9 @@ const CheckRunner = (props) => {
 
     async function runCheck() {
 
+
         console.log("im in runCheck: " + checkToRun)
-        const response = await fetch('/checks/' + checkToRun + '/run?url='+host, {
+        const response = await fetch('/checks/' + checkToRun + '/run?url=' + host, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -23,14 +24,17 @@ const CheckRunner = (props) => {
             // mode:'cors'
         })
         const dataReceived = await response.json();
-
-        setReport(JSON.stringify(dataReceived))
+        setReport(JSON.stringify(dataReceived)
+            .replaceAll(/}|{|"/g, '')
+            .split(/,|:/g)
+        )
     }
 
 
     const userInputHandler = (event) => {
         setHost(event.target.value)
     }
+
 
     return (
         <div>
@@ -41,11 +45,17 @@ const CheckRunner = (props) => {
                            onChange={userInputHandler}/>
                 </InputGroup>
             </Form>
-            <Card>
-                <CardBody>
-                    {report}
-                </CardBody>
-            </Card>
+            <Table>
+
+                {report.map((data, index) => {
+                        return index % 2 === 0 || index === 0 ? (
+                            <tr>
+                                <td>{data}</td>
+                            </tr>) : <td>{data}</td>;
+                    }
+                )
+                }
+            </Table>
         </div>
     )
 }
