@@ -6,7 +6,7 @@ const CheckRunner = (props) => {
 
     const checkToRun = props.checkToRun
 
-    const [report, setReport] = useState(['No checks were run']);
+    const [report, setReport] = useState(['No checks were run yet']);
     const [host, setHost] = useState(['Host unknown']);
 
 
@@ -24,9 +24,9 @@ const CheckRunner = (props) => {
             // mode:'cors'
         })
         const dataReceived = await response.json();
-        setReport(JSON.stringify(dataReceived)
+        setReport(JSON.stringify(dataReceived,null, 2)
             .replaceAll(/}|{|"/g, '')
-            .split(/,|:/g)
+            // .split(/,/g)
         )
     }
 
@@ -47,14 +47,18 @@ const CheckRunner = (props) => {
             </Form>
             <Table>
 
-                {report.map((data, index) => {
-                        return index % 2 === 0 || index === 0 ? (
-                            <tr>
-                                <td>{data}</td>
-                            </tr>) : <td>{data}</td>;
-                    }
-                )
-                }
+<pre>
+    {report.includes('id') ? <b>Your check was run and produced the following report:</b> : null }
+                {report}
+</pre>
+                {/*{report.map((data, index) => {*/}
+                {/*        return index % 2 === 0 || index === 0 ? (*/}
+                {/*            <tr>*/}
+                {/*                <td>{data}</td>*/}
+                {/*            </tr>) : <td>{data}</td>;*/}
+                {/*    }*/}
+                {/*)*/}
+                {/*}*/}
             </Table>
         </div>
     )
