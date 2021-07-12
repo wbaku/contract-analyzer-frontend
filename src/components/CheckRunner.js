@@ -4,28 +4,56 @@ import {Button, Form, Input, InputGroup, InputGroupAddon, Table} from "reactstra
 
 const CheckRunner = (props) => {
 
-    const checkToRun = props.checkToRun
+    let checkToRun = props.checkToRun
 
-    const [report, setReport] = useState(['No checks were run yet']);
+    const initialMessage = 'No checks were run yet';
+
+    const [report, setReport] = useState(initialMessage);
     const [host, setHost] = useState(['Host unknown']);
 
 
     async function runCheck() {
 
+        let response;
+        if (String(checkToRun).length===0) {
+            alert("Please choose checks to run first!")
+            return;
+        }
+        console.log(checkToRun.length)
 
-        console.log("im in runCheck: " + checkToRun)
-        const response = await fetch('/checks/' + checkToRun + '/run?url=' + host, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                // 'Access-Control-Allow-Origin': host,
-                'Content-Type': 'application/json'
-            },
-            // mode:'cors'
-        })
+        if (checkToRun.length === 1) {
+            console.log("im in runCheck: " + checkToRun)
+            response = await fetch('/checks/' + checkToRun + '/run?url=' + host, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    // 'Access-Control-Allow-Origin': host,
+                    'Content-Type': 'application/json'
+                },
+                // mode:'cors'
+            })
+        } else {
+
+
+
+            // checkToRun = String(checkToRun).replaceAll(',','%20%2C')
+
+
+            response = await fetch('/aggregatedChecks/run?namesOfChecks=' + checkToRun + '&url=' + host, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    // 'Access-Control-Allow-Origin': host,
+                    'Content-Type': 'application/json'
+                },
+                // mode:'cors'
+            })
+
+        }
+
         const dataReceived = await response.json();
-        setReport(JSON.stringify(dataReceived,null, 2)
-            .replaceAll(/}|{|"/g, '')
+        setReport(JSON.stringify(dataReceived, null, 2)
+                .replaceAll(/}|{|"/g, '')
             // .split(/,/g)
         )
     }
@@ -45,11 +73,12 @@ const CheckRunner = (props) => {
                            onChange={userInputHandler}/>
                 </InputGroup>
             </Form>
+
             <Table>
 
 <pre>
-    {report.includes('id') ? <b>Your check was run and produced the following report:</b> : null }
-                {report}
+    {report.includes('id') ? <b>Your check was run and produced the following report:</b> : null}
+    {report}
 </pre>
                 {/*{report.map((data, index) => {*/}
                 {/*        return index % 2 === 0 || index === 0 ? (*/}
