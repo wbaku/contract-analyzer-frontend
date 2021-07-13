@@ -3,7 +3,7 @@ import ListOfChecks from "./components/ListOfChecks";
 import React, {useEffect, useState} from "react";
 import CheckRunner from "./components/CheckRunner";
 import Navigation from "./components/Navigation";
-import Reports from "./components/Reports";
+import {Redirect, Route} from "react-router-dom";
 
 function App() {
 
@@ -32,12 +32,22 @@ function App() {
     return (
         <div className="App">
             <Navigation></Navigation>
-            <h1 className={"app-header"}>Contract-Analyzer</h1>
+            <Route path={'/'} exact>
+                <Redirect to={'/rest'}></Redirect>
+            </Route>
 
+            <Route path={'/rest'}>
 
-            <ListOfChecks checks={listOfChecks} checkHandler={checkHandler}/>
-            <CheckRunner checkToRun={checksToRun}/>
-            <Reports></Reports>
+                <ListOfChecks checks={listOfChecks} checkHandler={checkHandler}/>
+                <CheckRunner checkToRun={checksToRun}/>
+
+            </Route>
+            <Route path={'/reports'}>
+                <p>dupa</p>
+                {/*Reporting components*/}
+
+            </Route>
+
         </div>
     );
 

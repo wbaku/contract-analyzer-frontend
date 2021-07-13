@@ -1,35 +1,29 @@
-import {Nav, Navbar, NavbarBrand, NavItem, NavLink} from "reactstrap";
-import {useState} from "react";
-import {Collapse} from "reactstrap";
-import {Link} from "react-router-dom";
-import Reports from "./Reports";
-import { Redirect } from "react-router-dom";
+import {Container, Nav, Navbar, NavbarBrand, NavItem} from "reactstrap";
+import {NavLink} from "react-router-dom";
+import '../App.css';
+
 
 
 const Navigation = (props) => {
 
-    const [isOpen, setIsOpen] = useState(false);
-
 
     return <div>
-
+        <Container fluid>
         <Navbar color="light" light expand="md">
             <NavbarBrand>Contract Analyzer</NavbarBrand>
             <Nav className="mr-auto" navbar>
-                <NavItem>
-                    <Link to="/rest/">Rest checks </Link>
+                <NavItem className={'App-link'}>
+                    <NavLink to="/rest/"> Rest checks </NavLink>
                 </NavItem>
-
-                <NavItem>
-                    <Link to="/queues/">Queues checks </Link>
+                <NavItem className={'App-link'}>
+                    <NavLink to="/queues/"> Queues checks </NavLink>
                 </NavItem>
-
-                <NavItem>
-                    <Link to="/reports/">Reports</Link>
+                <NavItem className={'App-link'}>
+                    <NavLink to="/reports/"> Reports </NavLink>
                 </NavItem>
-
             </Nav>
         </Navbar>
+        </Container>
     </div>
 }
 

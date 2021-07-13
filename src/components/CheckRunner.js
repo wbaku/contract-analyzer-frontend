@@ -11,7 +11,6 @@ const CheckRunner = (props) => {
     const [report, setReport] = useState(initialMessage);
     const [host, setHost] = useState(['Host unknown']);
 
-
     async function runCheck() {
 
         let response;
@@ -33,11 +32,6 @@ const CheckRunner = (props) => {
                 // mode:'cors'
             })
         } else {
-
-
-
-            // checkToRun = String(checkToRun).replaceAll(',','%20%2C')
-
 
             response = await fetch('/aggregatedChecks/run?namesOfChecks=' + checkToRun + '&url=' + host, {
                 method: 'POST',
@@ -70,7 +64,7 @@ const CheckRunner = (props) => {
         <div>
             <Form>
                 <InputGroup>
-                    <InputGroupAddon addonType="prepend"><Button onClick={runCheck}>Run check</Button></InputGroupAddon>
+                    <InputGroupAddon addonType="prepend"><Button variant="primary" onClick={runCheck}>Run check</Button></InputGroupAddon>
                     <Input type="text" name="host" id="dupa" placeholder="Please enter host"
                            onChange={userInputHandler}/>
                 </InputGroup>
