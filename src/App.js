@@ -2,6 +2,7 @@ import './App.css';
 import ListOfChecks from "./components/ListOfChecks";
 import React, {useEffect, useState} from "react";
 import CheckRunner from "./components/CheckRunner";
+import Navigation from "./components/Navigation";
 
 function App() {
 
@@ -24,11 +25,12 @@ function App() {
     }
 
     useEffect(() => {
-        fetchListOfChecks()
-    });
+        fetchListOfChecks();
+    },);
 
     return (
         <div className="App">
+            <Navigation></Navigation>
             <h1 className={"app-header"}>Contract-Analyzer</h1>
 
 
