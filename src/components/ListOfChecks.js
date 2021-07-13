@@ -21,7 +21,7 @@ const ListOfChecks = (props) => {
     }
 
     const list = props.checks.map((check) =>
-        <Button onClick={() => onCheckClick(check)} active={selectedChecks.includes(check)}>
+        <Button variant="primary" onClick={() => onCheckClick(check)} active={selectedChecks.includes(check)}>
             {check}
         </Button>
     );
