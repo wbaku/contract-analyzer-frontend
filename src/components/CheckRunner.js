@@ -54,8 +54,10 @@ const CheckRunner = (props) => {
         const dataReceived = await response.json();
         setReport(JSON.stringify(dataReceived, null, 2)
                 .replaceAll(/}|{|"/g, '')
+
             // .split(/,/g)
         )
+        // console.log(report)
     }
 
 

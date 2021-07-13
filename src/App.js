@@ -3,6 +3,7 @@ import ListOfChecks from "./components/ListOfChecks";
 import React, {useEffect, useState} from "react";
 import CheckRunner from "./components/CheckRunner";
 import Navigation from "./components/Navigation";
+import Reports from "./components/Reports";
 
 function App() {
 
@@ -36,6 +37,7 @@ function App() {
 
             <ListOfChecks checks={listOfChecks} checkHandler={checkHandler}/>
             <CheckRunner checkToRun={checksToRun}/>
+            <Reports></Reports>
         </div>
     );
 

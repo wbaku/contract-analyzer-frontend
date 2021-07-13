@@ -2,6 +2,8 @@ import {Nav, Navbar, NavbarBrand, NavItem, NavLink} from "reactstrap";
 import {useState} from "react";
 import {Collapse} from "reactstrap";
 import {Link} from "react-router-dom";
+import Reports from "./Reports";
+import { Redirect } from "react-router-dom";
 
 
 const Navigation = (props) => {
@@ -23,7 +25,7 @@ const Navigation = (props) => {
                 </NavItem>
 
                 <NavItem>
-                    <Link to="/reports/">Reports </Link>
+                    <Link to="/reports/">Reports</Link>
                 </NavItem>
 
             </Nav>
