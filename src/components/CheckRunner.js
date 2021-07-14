@@ -15,7 +15,7 @@ const CheckRunner = (props) => {
     async function runCheck() {
 
         let response;
-        if (String(checkToRun).length===0) {
+        if (String(checkToRun).length === 0) {
             alert("Please choose checks to run first!")
             return;
         }
@@ -27,10 +27,8 @@ const CheckRunner = (props) => {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
-                    // 'Access-Control-Allow-Origin': host,
                     'Content-Type': 'application/json'
                 },
-                // mode:'cors'
             })
         } else {
 
@@ -38,18 +36,15 @@ const CheckRunner = (props) => {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
-                    // 'Access-Control-Allow-Origin': host,
                     'Content-Type': 'application/json'
                 },
-                // mode:'cors'
             })
 
         }
 
         const dataReceived = await response.json();
         setReport(JSON.stringify(dataReceived, null, 2)
-                .replaceAll(/}|{|"/g, '')
-            // .split(/,/g)
+            .replaceAll(/}|{|"/g, '')
         )
     }
 
@@ -58,12 +53,12 @@ const CheckRunner = (props) => {
         setHost(event.target.value)
     }
 
-
     return (
         <div>
             <Form>
                 <InputGroup>
-                    <InputGroupAddon addonType="prepend"><Button className={classes.button} variant="primary" onClick={runCheck}>Run check</Button></InputGroupAddon>
+                    <InputGroupAddon addonType="prepend"><Button className={classes.button} onClick={runCheck}>Run
+                        check</Button></InputGroupAddon>
                     <Input type="text" name="host" id="dupa" placeholder="Please enter host"
                            onChange={userInputHandler}/>
                 </InputGroup>

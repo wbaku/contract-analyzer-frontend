@@ -5,9 +5,11 @@
 }
 
 .brand{
-    color: mediumslateblue;
+    color: salmon;
     background-color: teal;
     padding: 1rem;
+    font-size: large;
+    font-weight: bold;
 }
 
 .button {

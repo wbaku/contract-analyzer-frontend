@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {Button, ListGroup} from "reactstrap";
+import classes from "./Styles.module.css";
 
 const ListOfChecks = (props) => {
 
@@ -20,13 +21,14 @@ const ListOfChecks = (props) => {
     }
 
     const list = props.checks.map((check) =>
-        <Button variant="primary" onClick={() => onCheckClick(check)} active={selectedChecks.includes(check)}>
+        <Button className={classes.button} onClick={() => onCheckClick(check)} active={selectedChecks.includes(check)}>
             {check}
         </Button>
     );
     return (
-        <ListGroup>
-            Available Checks:
+        <ListGroup className={classes.brand}>
+<p>            Available Checks
+</p>
             {list}
         </ListGroup>
     );
