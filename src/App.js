@@ -1,10 +1,11 @@
 import './App.css';
 import ListOfChecks from "./components/ListOfChecks";
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import CheckRunner from "./components/CheckRunner";
 import Navigation from "./components/Navigation";
 import {Redirect, Route} from "react-router-dom";
 import ReportRunner from "./components/reports/ReportRunner";
+import classes from "./components/Styles.module.css";
 
 function App() {
 
@@ -12,14 +13,26 @@ function App() {
 
     const [checksToRun, setChecksToRun] = useState([''])
 
+    const [error, setError] = useState(null)
+
+
     const [reports, setReports] = useState([]);
 
-    async function fetchListOfChecks() {
+    const fetchListOfChecks = useCallback(async () => {
 
-        const response = await fetch('/restContractChecks')
-        const dataReceived = await response.json();
-        setListOfChecks(dataReceived.listOfChecks)
-    }
+        try {
+            const response = await fetch('/restContractChecks')
+            if(!response.ok) {
+                throw new Error('Error fetching the list of checks')
+            }
+            const dataReceived = await response.json();
+
+            setListOfChecks(dataReceived.listOfChecks)
+        } catch (error) {
+            setError(error.message)
+        }
+
+    }, [])
 
     const checkHandler = check => {
 
@@ -33,10 +46,10 @@ function App() {
 
     useEffect(() => {
         fetchListOfChecks();
-    },);
+    },[fetchListOfChecks]);
 
     return (
-        <div className="App">
+        <div className={classes.App}>
             <Navigation/>
             <Route path={'/'} exact>
                 <Redirect to={'/rest'}/>
@@ -46,6 +59,7 @@ function App() {
 
                 <ListOfChecks checks={listOfChecks} checkHandler={checkHandler}/>
                 <CheckRunner checkToRun={checksToRun}/>
+                {error && <p>{error}</p>}
 
             </Route>
             <Route path={'/reports'}>

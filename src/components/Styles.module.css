@@ -1,7 +1,16 @@
+.App {
+    text-align: center;
+    text-decoration: none;
+
+
+}
+
+
 .navigation{
     padding: 10px;
     background-color: #4f346a;
     color: #4f346a;
+
 }
 
 .brand{
@@ -15,6 +24,8 @@
 .button {
     color: #4f346a;
     background-color: #451566;
+    text-decoration: none;
+
 }
 
 .text-link {
@@ -26,5 +37,6 @@
     background-color: teal;
     padding: 1rem;
     font-size: small;
+    text-decoration: none;
 
 }

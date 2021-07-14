@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Button, Form, Input, InputGroup, InputGroupAddon, Table} from "reactstrap";
+import {Button, Form, Input, InputGroup, InputGroupAddon} from "reactstrap";
 import classes from "./Styles.module.css";
 
 
@@ -56,30 +56,20 @@ const CheckRunner = (props) => {
 
     return (
         <div>
-            <Form>
-                <InputGroup>
-                    <InputGroupAddon addonType="prepend"><Button className={classes.button} onClick={runCheck}>Run
-                        check</Button></InputGroupAddon>
-                    <Input type="text" name="host" id="dupa" placeholder="Please enter host"
-                           onChange={userInputHandler}/>
-                </InputGroup>
-            </Form>
+            <InputGroup>
+                <InputGroupAddon addonType="prepend"><Button className={classes.button} onClick={runCheck}>Run
+                    check</Button></InputGroupAddon>
+                <Input type="text" name="host" id="dupa" placeholder="Please enter host"
+                       onChange={userInputHandler}/>
+            </InputGroup>
 
-            <Table>
 
-                <p className={classes.report}>
-                    {report.includes('id') ? <b>Your check was run and produced the following report:</b> : null}
-                    {report}
-                </p>
-                {/*{report.map((data, index) => {*/}
-                {/*        return index % 2 === 0 || index === 0 ? (*/}
-                {/*            <tr>*/}
-                {/*                <td>{data}</td>*/}
-                {/*            </tr>) : <td>{data}</td>;*/}
-                {/*    }*/}
-                {/*)*/}
-                {/*}*/}
-            </Table>
+            <p className={classes.report}>
+                {report.includes('id') ? <b>Your check was run and produced the following report:</b> : null}
+
+            </p>
+            <p>                {report}
+            </p>
         </div>
     )
 }
