@@ -10,7 +10,7 @@ const CheckRunner = (props) => {
     const initialMessage = 'No checks were run yet';
 
     const [report, setReport] = useState(initialMessage);
-    const [host, setHost] = useState(['Host unknown']);
+    const [host, setHost] = useState(['Host unknogiwn']);
 
     async function runCheck() {
 
@@ -46,6 +46,7 @@ const CheckRunner = (props) => {
         setReport(JSON.stringify(dataReceived, null, 2)
             .replaceAll(/}|{|"/g, '')
         )
+        // console.log(report)
     }
 
 
