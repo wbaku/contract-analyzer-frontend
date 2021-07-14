@@ -52,17 +52,16 @@ const ReportRunner = props => {
     return (
         <div>
             <Form>
-                <Button variant="primary" onClick={showReports}>Show reports</Button>
+                <Button variant="primary" onClick={showReports}>Show all reports</Button>
             </Form>
             <Form>
                 <InputGroup>
-                    <Button variant="primary">Show report with id</Button>
+                    <Button variant="primary" onClick={userInputHandler}>Show report with id</Button>
                     <Input type="number"
                            placeholder="Please enter id"
                            value={reportId}
                            onChange={userInputHandler}/>
                 </InputGroup>
-                <Button variant="primary" onClick={userInputHandler}>Show</Button>
             </Form>
             <ListGroup>
             {reports.includes('id') ? <b>Your check was run and produced the following report:</b> : null}

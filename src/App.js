@@ -4,12 +4,15 @@ import React, {useEffect, useState} from "react";
 import CheckRunner from "./components/CheckRunner";
 import Navigation from "./components/Navigation";
 import {Redirect, Route} from "react-router-dom";
+import ReportRunner from "./components/reports/ReportRunner";
 
 function App() {
 
     const [listOfChecks, setListOfChecks] = useState(['Loading checks...'])
 
     const [checksToRun, setChecksToRun] = useState([''])
+
+    const [reports, setReports] = useState([]);
 
     async function fetchListOfChecks() {
 
@@ -22,6 +25,10 @@ function App() {
 
         console.log("im in check handler " + check)
         setChecksToRun(check)
+    }
+
+    const reportsHandler = reports => {
+        setReports(reports);
     }
 
     useEffect(() => {
@@ -42,7 +49,7 @@ function App() {
 
             </Route>
             <Route path={'/reports'}>
-                <ReportRunner reportToRun={reports}/>
+                <ReportRunner reportToRun={reports} reportsHandler={reportsHandler}/>
             </Route>
         </div>
     );
