@@ -1,0 +1,30 @@
+.navigation{
+    padding: 10px;
+    background-color: #4f346a;
+    color: #4f346a;
+}
+
+.brand{
+    color: salmon;
+    background-color: teal;
+    padding: 1rem;
+    font-size: large;
+    font-weight: bold;
+}
+
+.button {
+    color: #4f346a;
+    background-color: #451566;
+}
+
+.text-link {
+    text-decoration: none;
+}
+
+.report {
+    color: salmon;
+    background-color: teal;
+    padding: 1rem;
+    font-size: small;
+
+}

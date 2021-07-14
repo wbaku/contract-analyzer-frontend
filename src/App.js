@@ -4,16 +4,12 @@ import React, {useEffect, useState} from "react";
 import CheckRunner from "./components/CheckRunner";
 import Navigation from "./components/Navigation";
 import {Redirect, Route} from "react-router-dom";
-import ReportRunner from "./components/reports/ReportRunner";
-import data from "bootstrap/js/src/dom/data";
 
 function App() {
 
     const [listOfChecks, setListOfChecks] = useState(['Loading checks...'])
 
     const [checksToRun, setChecksToRun] = useState([''])
-
-    const [reports, setReports] = useState([''])
 
     async function fetchListOfChecks() {
 
@@ -28,19 +24,15 @@ function App() {
         setChecksToRun(check)
     }
 
-    const reportsHandler = report => {
-        setReports(report);
-    }
-
     useEffect(() => {
         fetchListOfChecks();
     },);
 
     return (
         <div className="App">
-            <Navigation></Navigation>
+            <Navigation/>
             <Route path={'/'} exact>
-                <Redirect to={'/rest'}></Redirect>
+                <Redirect to={'/rest'}/>
             </Route>
 
             <Route path={'/rest'}>
@@ -52,7 +44,6 @@ function App() {
             <Route path={'/reports'}>
                 <ReportRunner reportToRun={reports}/>
             </Route>
-
         </div>
     );
 
