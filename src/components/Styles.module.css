@@ -1,10 +1,10 @@
 .App {
     text-align: center;
-    text-decoration: none;
-
-
 }
 
+* {
+    border-radius: 0 !important;
+}
 
 .navigation{
     padding: 10px;
@@ -21,7 +21,15 @@
     font-weight: bold;
 }
 
+.brandSmall{
+    color: salmon;
+    background-color: teal;
+    padding: 1rem;
+    font-size: small;
+}
+
 .button {
+    width: auto;
     color: #4f346a;
     background-color: #451566;
     text-decoration: none;
@@ -39,4 +47,14 @@
     font-size: small;
     text-decoration: none;
 
+}
+
+input[type="text"]{
+    background-color: salmon;
+    border: none;
+}
+
+input[type=text]:focus{
+    background-color: aquamarine; /* Full freedom. (works also with border-radius) */
+    border: none;
 }

@@ -7,7 +7,7 @@ const CheckRunner = (props) => {
 
     let checkToRun = props.checkToRun
 
-    const initialMessage = 'No checks were run yet';
+    const initialMessage = '';
 
     const [report, setReport] = useState(initialMessage);
     const [host, setHost] = useState(['Host unknogiwn']);
@@ -65,10 +65,8 @@ const CheckRunner = (props) => {
 
 
             <p className={classes.report}>
-                {report.includes('id') ? <b>Your check was run and produced the following report:</b> : null}
-
-            </p>
-            <p>                {report}
+                {report.includes('id') ? <b>Your check was run and produced the following report: </b> : null} <br/>
+                {report}
             </p>
         </div>
     )

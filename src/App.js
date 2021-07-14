@@ -22,7 +22,7 @@ function App() {
 
         try {
             const response = await fetch('/restContractChecks')
-            if(!response.ok) {
+            if (!response.ok) {
                 throw new Error('Error fetching the list of checks')
             }
             const dataReceived = await response.json();
@@ -46,7 +46,7 @@ function App() {
 
     useEffect(() => {
         fetchListOfChecks();
-    },[fetchListOfChecks]);
+    }, [fetchListOfChecks]);
 
     return (
         <div className={classes.App}>
@@ -59,7 +59,7 @@ function App() {
 
                 <ListOfChecks checks={listOfChecks} checkHandler={checkHandler}/>
                 <CheckRunner checkToRun={checksToRun}/>
-                {error && <p>{error}</p>}
+                {error && <p className={classes.brandSmall}>{error}</p>}
 
             </Route>
             <Route path={'/reports'}>
