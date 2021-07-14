@@ -31,9 +31,9 @@ function App() {
 
     return (
         <div className="App">
-            <Navigation></Navigation>
+            <Navigation/>
             <Route path={'/'} exact>
-                <Redirect to={'/rest'}></Redirect>
+                <Redirect to={'/rest'}/>
             </Route>
 
             <Route path={'/rest'}>
@@ -45,9 +45,7 @@ function App() {
             <Route path={'/reports'}>
                 <p>dupa</p>
                 {/*Reporting components*/}
-
             </Route>
-
         </div>
     );
 

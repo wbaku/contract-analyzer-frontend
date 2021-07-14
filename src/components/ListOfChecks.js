@@ -6,7 +6,6 @@ const ListOfChecks = (props) => {
 
     const [selectedChecks, setSelected] = useState([]);
 
-
     const onCheckClick = (selected) => {
 
         const index = selectedChecks.indexOf(selected);

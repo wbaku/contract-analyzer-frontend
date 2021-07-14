@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {Button, Form, Input, InputGroup, InputGroupAddon, Table} from "reactstrap";
+import classes from "./Styles.module.css";
 
 
 const CheckRunner = (props) => {
@@ -62,7 +63,7 @@ const CheckRunner = (props) => {
         <div>
             <Form>
                 <InputGroup>
-                    <InputGroupAddon addonType="prepend"><Button variant="primary" onClick={runCheck}>Run check</Button></InputGroupAddon>
+                    <InputGroupAddon addonType="prepend"><Button className={classes.button} variant="primary" onClick={runCheck}>Run check</Button></InputGroupAddon>
                     <Input type="text" name="host" id="dupa" placeholder="Please enter host"
                            onChange={userInputHandler}/>
                 </InputGroup>

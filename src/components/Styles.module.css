@@ -1,0 +1,20 @@
+.navigation{
+    padding: 10px;
+    background-color: #4f346a;
+    color: #4f346a;
+}
+
+.brand{
+    color: mediumslateblue;
+    background-color: teal;
+    padding: 1rem;
+}
+
+.button {
+    color: #4f346a;
+    background-color: #451566;
+}
+
+.text-link {
+    text-decoration: none;
+}
