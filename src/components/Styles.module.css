@@ -20,3 +20,11 @@
 .text-link {
     text-decoration: none;
 }
+
+.report {
+    color: salmon;
+    background-color: teal;
+    padding: 1rem;
+    font-size: small;
+
+}

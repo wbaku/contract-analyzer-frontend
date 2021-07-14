@@ -67,10 +67,10 @@ const CheckRunner = (props) => {
 
             <Table>
 
-<pre>
-    {report.includes('id') ? <b>Your check was run and produced the following report:</b> : null}
-    {report}
-</pre>
+                <p className={classes.report}>
+                    {report.includes('id') ? <b>Your check was run and produced the following report:</b> : null}
+                    {report}
+                </p>
                 {/*{report.map((data, index) => {*/}
                 {/*        return index % 2 === 0 || index === 0 ? (*/}
                 {/*            <tr>*/}
