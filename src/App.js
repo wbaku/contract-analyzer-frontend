@@ -60,7 +60,7 @@ function App() {
 
                 <ListOfChecks checks={listOfChecks} checkHandler={checkHandler}/>
                 <CheckRunner checkToRun={checksToRun}/>
-                {error && <div className={classes.brandSmall}>{error}</div>}
+                {error && <p className={classes.brandSmall}>{error}</p>}
 
             </Route>
             <Route path={'/reports'}>
