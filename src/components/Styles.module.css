@@ -4,6 +4,8 @@
 
 * {
     border-radius: 0 !important;
+    border: none !important;
+    text-decoration: none !important;
 }
 
 .navigation{

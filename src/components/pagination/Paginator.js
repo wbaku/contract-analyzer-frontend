@@ -1,6 +1,7 @@
 import React, {useMemo, useState} from "react";
 import ReactPaginate from "react-paginate";
 import ReportViewer from "../reports/ReportViewer";
+import classes from "../Styles.module.css";
 
 const PER_PAGE = 10;
 
@@ -28,7 +29,7 @@ const Paginator = props => {
 
     return (
         <div>
-            <ReactPaginate
+            <ReactPaginate className={classes.brand}
             previousLabel={"← Previous"}
             nextLabel={"Next →"}
             pageCount={pageCount}

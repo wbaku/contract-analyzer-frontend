@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import ReactPaginate from 'react-paginate';
-import {Button, Form, Input, InputGroup, Card, ListGroup, ListGroupItem, CardBody, CardHeader} from "reactstrap";
+import {Button, Form, Input, InputGroup, InputGroupAddon, ListGroup} from "reactstrap";
 import classes from "../Styles.module.css";
 import ReportViewer from "./ReportViewer";
-import Paginator from "../pagination/Paginator";
 import '../pagination/Paginator.css'
 import {useKeycloak} from "@react-keycloak/web";
 
@@ -27,7 +26,7 @@ const ReportRunner = props => {
     const currentPageData = reports
         .slice(offset, offset + PER_PAGE)
         .map(report =>
-            <ReportViewer report={report} />
+            <ReportViewer report={report}/>
         );
     const pageCount = Math.ceil(reports.length / PER_PAGE);
 
@@ -78,35 +77,32 @@ const ReportRunner = props => {
         setReportId(event.target.value);
     }
 
-    function handlePageClick({ selected: selectedPage }) {
+    function handlePageClick({selected: selectedPage}) {
         setCurrentPage(selectedPage);
     }
 
     return (
         <div>
 
-            <Form>
-                <Button className={classes.button} variant="primary" onClick={showAllReports}>Show all reports</Button>
-            </Form>
-            <Form>
-                <InputGroup>
-                    <Button variant="primary" onClick={getReportById}>Show report with id</Button>
-                    <Input type="number"
-                           placeholder="Please enter id"
-                           value={reportId}
-                           onChange={userInputHandler}
-                    />
-                </InputGroup>
-            </Form>
-            <ListGroup className={classes.reportWrapper}>
+            <Button className={classes.button} onClick={showAllReports}>Show all reports</Button>
+            <InputGroup>
+                <InputGroupAddon addonType="prepend"><Button className={classes.button} onClick={getReportById}>Show report with id</Button>
+                </InputGroupAddon>
+                <Input type="text"
+                       placeholder="Please enter id"
+                       value={reportId}
+                       onChange={userInputHandler}
+                />
+            </InputGroup>
+            <ListGroup className={classes.report}>
                 {currentPageData}
-                {!isError && <ReportViewer report={reportById} />}
+                {!isError && <ReportViewer report={reportById}/>}
                 {isError && <div>{reportById}</div>}
             </ListGroup>
             {/*<div><Paginator reports={reports} /></div>*/}
             <ReactPaginate
-                previousLabel={"← Previous"}
-                nextLabel={"Next →"}
+                previousLabel={"←"}
+                nextLabel={"→"}
                 breakLabel={'...'}
                 pageCount={pageCount}
                 onPageChange={handlePageClick}

@@ -6,9 +6,9 @@ const ReportViewer = (props) => {
     return (
         <div key={props.report.id}>
             <Card>
-                <CardBody>
+                <CardBody className={classes.brandSmall}>
                     {Object.entries(props.report).map( ([key, val]) =>
-                        <div className={classes.reportWrapper}>{key}: {val}</div>
+                        <div >{key}: {val}</div>
                     )}
                 </CardBody>
             </Card>
