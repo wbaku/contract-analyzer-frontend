@@ -32,8 +32,17 @@
     width: auto;
     color: #4f346a;
     background-color: #451566;
-    text-decoration: none;
+}
 
+.report-wrapper {
+    max-width: 500px;
+    text-align: left;
+    border-radius: 10px;
+    justify-content: left;
+}
+
+.text-link {
+    text-decoration: none;
 }
 
 
