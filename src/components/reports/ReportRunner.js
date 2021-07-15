@@ -37,6 +37,7 @@ const ReportRunner = props => {
         let response = await fetch('/reports/' + reportId, {
             method: 'GET',
             headers: {
+                'Authorization': 'Bearer ' + keycloak.token,
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
