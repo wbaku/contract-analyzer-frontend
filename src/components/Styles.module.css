@@ -17,6 +17,13 @@
     background-color: #451566;
 }
 
+.report-wrapper {
+    max-width: 500px;
+    text-align: left;
+    border-radius: 10px;
+    justify-content: left;
+}
+
 .text-link {
     text-decoration: none;
 }
