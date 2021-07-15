@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {Button, Form, Input, InputGroup, InputGroupAddon} from "reactstrap";
 import classes from "./Styles.module.css";
+import {useKeycloak} from "@react-keycloak/web";
 
 
 const CheckRunner = (props) => {
@@ -12,7 +13,12 @@ const CheckRunner = (props) => {
     const [report, setReport] = useState(initialMessage);
     const [host, setHost] = useState(['Host unknogiwn']);
 
+    const {keycloak, initialized} = useKeycloak();
+
+
     async function runCheck() {
+
+
 
         let response;
         if (String(checkToRun).length === 0) {
@@ -26,6 +32,7 @@ const CheckRunner = (props) => {
             response = await fetch('/checks/' + checkToRun + '/run?url=' + host, {
                 method: 'POST',
                 headers: {
+                    'Authorization': 'Bearer ' + keycloak.token,
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
@@ -35,6 +42,7 @@ const CheckRunner = (props) => {
             response = await fetch('/aggregatedChecks/run?namesOfChecks=' + checkToRun + '&url=' + host, {
                 method: 'POST',
                 headers: {
+                    'Authorization': 'Bearer ' + keycloak.token,
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },

@@ -9,12 +9,12 @@ import classes from "./components/Styles.module.css";
 
 function App() {
 
+
     const [listOfChecks, setListOfChecks] = useState(['Loading checks...'])
 
     const [checksToRun, setChecksToRun] = useState([''])
 
     const [error, setError] = useState(null)
-
 
     const [reports, setReports] = useState([]);
 
@@ -31,6 +31,7 @@ function App() {
         } catch (error) {
             setError(error.message)
         }
+        return fetchListOfChecks
 
     }, [])
 
@@ -39,7 +40,6 @@ function App() {
         console.log("im in check handler " + check)
         setChecksToRun(check)
     }
-
     const reportsHandler = reports => {
         setReports(reports);
     }
@@ -47,6 +47,7 @@ function App() {
     useEffect(() => {
         fetchListOfChecks();
     }, [fetchListOfChecks]);
+
 
     return (
         <div className={classes.App}>

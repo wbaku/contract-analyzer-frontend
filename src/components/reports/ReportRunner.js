@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {Button, Form, Input, InputGroup, Card, ListGroup, ListGroupItem} from "reactstrap";
+import {useKeycloak} from "@react-keycloak/web";
 
 const ReportRunner = props => {
 
@@ -11,10 +12,14 @@ const ReportRunner = props => {
 
     const [reportId, setReportId] = useState('');
 
+    const {keycloak, initialized} = useKeycloak();
+
+
     async function showReports() {
         let response = await fetch('/reports', {
             method: 'GET',
             headers: {
+                'Authorization': 'Bearer ' + keycloak.token,
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
