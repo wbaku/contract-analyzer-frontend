@@ -38,7 +38,7 @@ const CheckRunner = (props) => {
                 },
             })
             if (!response.ok) {
-                throw new Error('Something went wrong here')giot
+                throw new Error('Something went wrong here')
             }
 
         } else {
