@@ -27,8 +27,8 @@ const ListOfChecks = (props) => {
     );
     return (
         <ListGroup className={classes.brand}>
-<p>            Available Checks
-</p>
+            <p> Available Checks
+            </p>
             {list}
         </ListGroup>
     );

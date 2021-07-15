@@ -5,13 +5,21 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter} from "react-router-dom";
+import { ReactKeycloakProvider } from '@react-keycloak/web'
+import keycloak from './keycloak'
+
+
+const keycloakInitOptions = { onLoad: 'login-required' }
 
 ReactDOM.render(
+    <ReactKeycloakProvider authClient={keycloak} initOptions={keycloakInitOptions}>
     <BrowserRouter>
         <React.StrictMode>
             <App/>
         </React.StrictMode>
-    </BrowserRouter>,
+    </BrowserRouter>
+        </ReactKeycloakProvider>
+            ,
     document.getElementById('root')
 );
 

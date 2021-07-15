@@ -5,6 +5,8 @@ import classes from "../Styles.module.css";
 import ReportViewer from "./ReportViewer";
 import Paginator from "../pagination/Paginator";
 import '../pagination/Paginator.css'
+import {useKeycloak} from "@react-keycloak/web";
+
 
 const ReportRunner = props => {
 
@@ -29,11 +31,14 @@ const ReportRunner = props => {
         );
     const pageCount = Math.ceil(reports.length / PER_PAGE);
 
+    const {keycloak, initialized} = useKeycloak();
+
     async function showAllReports() {
         setReportById('')
         let response = await fetch('/reports', {
             method: 'GET',
             headers: {
+                'Authorization': 'Bearer ' + keycloak.token,
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
@@ -51,6 +56,7 @@ const ReportRunner = props => {
         let response = await fetch('/reports/' + reportId, {
             method: 'GET',
             headers: {
+                'Authorization': 'Bearer ' + keycloak.token,
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },

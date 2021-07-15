@@ -1,51 +1,68 @@
 import React, {useState} from "react";
-import {Button, Form, Input, InputGroup, InputGroupAddon, Table} from "reactstrap";
+import {Button, Input, InputGroup, InputGroupAddon} from "reactstrap";
 import classes from "./Styles.module.css";
+import {useKeycloak} from "@react-keycloak/web";
 
 
 const CheckRunner = (props) => {
 
     let checkToRun = props.checkToRun
 
-    const initialMessage = 'No checks were run yet';
+    const initialMessage = '';
 
     const [report, setReport] = useState(initialMessage);
-    const [host, setHost] = useState(['Host unknogiwn']);
+    const [host, setHost] = useState(['http://localhost:8080']);
+    const [error, setError] = useState(null)
+
+
+    const {keycloak, initialized} = useKeycloak();
 
     async function runCheck() {
 
         let response;
         if (String(checkToRun).length === 0) {
-            alert("Please choose checks to run first!")
+            alert("Please choose checks to run first.")
             return;
         }
-        console.log(checkToRun.length)
+
+        try {
 
         if (checkToRun.length === 1) {
-            console.log("im in runCheck: " + checkToRun)
             response = await fetch('/checks/' + checkToRun + '/run?url=' + host, {
                 method: 'POST',
                 headers: {
+                    'Authorization': 'Bearer ' + keycloak.token,
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
             })
+            if (!response.ok) {
+                throw new Error('Something went wrong here:')
+            }
+
         } else {
 
             response = await fetch('/aggregatedChecks/run?namesOfChecks=' + checkToRun + '&url=' + host, {
                 method: 'POST',
                 headers: {
+                    'Authorization': 'Bearer ' + keycloak.token,
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
             })
 
-        }
+            if (!response.ok) {
+                throw new Error('Something went wrong here:')
+            }
+
+        }} catch (error) {
+            setError(error.message)}
 
         const dataReceived = await response.json();
         setReport(JSON.stringify(dataReceived, null, 2)
             .replaceAll(/}|{|"/g, '')
         )
+        setError(null)
         // console.log(report)
     }
 
@@ -56,30 +73,18 @@ const CheckRunner = (props) => {
 
     return (
         <div>
-            <Form>
-                <InputGroup>
-                    <InputGroupAddon addonType="prepend"><Button className={classes.button} onClick={runCheck}>Run
-                        check</Button></InputGroupAddon>
-                    <Input type="text" name="host" id="dupa" placeholder="Please enter host"
-                           onChange={userInputHandler}/>
-                </InputGroup>
-            </Form>
+            <InputGroup>
+                <InputGroupAddon addonType="prepend"><Button className={classes.button} onClick={runCheck}>Run
+                    check</Button></InputGroupAddon>
+                <Input type="text" name="host" id="dupa" placeholder="Please enter host. The initial host is localhost:8080"
+                       onChange={userInputHandler}/>
+            </InputGroup>
 
-            <Table>
-
-                <p className={classes.report}>
-                    {report.includes('id') ? <b>Your check was run and produced the following report:</b> : null}
-                    {report}
-                </p>
-                {/*{report.map((data, index) => {*/}
-                {/*        return index % 2 === 0 || index === 0 ? (*/}
-                {/*            <tr>*/}
-                {/*                <td>{data}</td>*/}
-                {/*            </tr>) : <td>{data}</td>;*/}
-                {/*    }*/}
-                {/*)*/}
-                {/*}*/}
-            </Table>
+            <p className={classes.report}>
+                {error ? <b>{error}</b> :null}
+                {report.includes('id') ? <b>Your check was run and produced the following report: </b> : null} <br/>
+                {report}
+            </p>
         </div>
     )
 }
