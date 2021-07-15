@@ -8,8 +8,11 @@ import {BrowserRouter} from "react-router-dom";
 import { ReactKeycloakProvider } from '@react-keycloak/web'
 import keycloak from './keycloak'
 
+
+const initOptions = { onLoad: 'login-required' }
+
 ReactDOM.render(
-    <ReactKeycloakProvider authClient={keycloak} onLoad={'login-required'}>
+    <ReactKeycloakProvider authClient={keycloak} initOptions={initOptions}>
     <BrowserRouter>
         <React.StrictMode>
             <App/>
