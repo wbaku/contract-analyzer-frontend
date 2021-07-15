@@ -37,16 +37,13 @@
 
 }
 
-.text-link {
-    text-decoration: none;
-}
 
 .report {
     color: salmon;
     background-color: teal;
     padding: 1rem;
     font-size: small;
-    text-decoration: none;
+    text-decoration: none !important;
 
 }
 
@@ -56,6 +53,6 @@ input[type="text"]{
 }
 
 input[type=text]:focus{
-    background-color: aquamarine; /* Full freedom. (works also with border-radius) */
+    background-color: aquamarine;
     border: none;
 }
