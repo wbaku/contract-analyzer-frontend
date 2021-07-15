@@ -17,7 +17,6 @@ const CheckRunner = (props) => {
 
     const {keycloak, initialized} = useKeycloak();
 
-
     async function runCheck() {
 
         let response;
@@ -38,7 +37,7 @@ const CheckRunner = (props) => {
                 },
             })
             if (!response.ok) {
-                throw new Error('Something went wrong here')
+                throw new Error('Something went wrong here:')
             }
 
         } else {
@@ -53,7 +52,7 @@ const CheckRunner = (props) => {
             })
 
             if (!response.ok) {
-                throw new Error('Something went wrong here')
+                throw new Error('Something went wrong here:')
             }
 
         }} catch (error) {
@@ -63,6 +62,7 @@ const CheckRunner = (props) => {
         setReport(JSON.stringify(dataReceived, null, 2)
             .replaceAll(/}|{|"/g, '')
         )
+        setError(null)
         // console.log(report)
     }
 
@@ -76,12 +76,12 @@ const CheckRunner = (props) => {
             <InputGroup>
                 <InputGroupAddon addonType="prepend"><Button className={classes.button} onClick={runCheck}>Run
                     check</Button></InputGroupAddon>
-                <Input type="text" name="host" id="dupa" placeholder="Please enter host. The default is localhost:8080"
+                <Input type="text" name="host" id="dupa" placeholder="Please enter host. The initial host is localhost:8080"
                        onChange={userInputHandler}/>
             </InputGroup>
 
             <p className={classes.report}>
-                {error && <div><b>{error}</b></div>}
+                {error ? <b>{error}</b> :null}
                 {report.includes('id') ? <b>Your check was run and produced the following report: </b> : null} <br/>
                 {report}
             </p>
