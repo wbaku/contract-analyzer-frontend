@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Button, ListGroup} from "reactstrap";
+import {Badge, Button, ListGroup} from "reactstrap";
 import classes from "./Styles.module.css";
 
 const ListOfChecks = (props) => {
@@ -22,7 +22,7 @@ const ListOfChecks = (props) => {
 
     const list = props.checks.map((check) =>
         <Button className={classes.button} onClick={() => onCheckClick(check)} active={selectedChecks.includes(check)}>
-            {check}
+            {check}<Badge>{selectedChecks.filter(x=>x===check).length}</Badge>
         </Button>
     );
     return (
