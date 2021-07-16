@@ -4,6 +4,8 @@
 
 * {
     border-radius: 0 !important;
+    border: none !important;
+    text-decoration: none !important;
 }
 
 .navigation{
@@ -26,14 +28,24 @@
     background-color: teal;
     padding: 1rem;
     font-size: small;
+    font-weight: bold;
 }
 
 .button {
     width: auto;
     color: #4f346a;
     background-color: #451566;
-    text-decoration: none;
+}
 
+.report-wrapper {
+    max-width: 500px;
+    text-align: left;
+    border-radius: 10px;
+    justify-content: left;
+}
+
+.text-link {
+    text-decoration: none;
 }
 
 .report {
