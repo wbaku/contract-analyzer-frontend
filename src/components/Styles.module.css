@@ -16,7 +16,7 @@
 }
 
 .brand{
-    color: salmon;
+    color: black;
     background-color: teal;
     padding: 1rem;
     font-size: large;
@@ -24,7 +24,7 @@
 }
 
 .brandSmall{
-    color: salmon;
+    color: chartreuse;
     background-color: teal;
     padding: 1rem;
     font-size: small;
@@ -32,9 +32,18 @@
 }
 
 .button {
-    width: auto;
-    color: #4f346a;
-    background-color: #451566;
+    color: #4f346a
+    /*background-color: #451566;*/
+}
+
+.resetButton {
+    color: salmon;
+    background-color:     #451566;
+}
+
+.resetButton:hover {
+    background-color: salmon;
+    color:     #451566;
 }
 
 .report-wrapper {
@@ -49,7 +58,7 @@
 }
 
 .report {
-    color: salmon;
+    color: chartreuse;
     background-color: teal;
     padding: 1rem;
     font-size: small;

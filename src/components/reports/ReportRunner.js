@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import ReactPaginate from 'react-paginate';
-import {Button, Form, Input, InputGroup, InputGroupAddon, ListGroup} from "reactstrap";
+import {Button, Input, InputGroup, InputGroupAddon, ListGroup} from "reactstrap";
 import classes from "../Styles.module.css";
 import ReportViewer from "./ReportViewer";
 import '../pagination/Paginator.css'
@@ -9,7 +9,6 @@ import {useKeycloak} from "@react-keycloak/web";
 
 const ReportRunner = props => {
 
-    // const initialMessage = 'No reports were created yet';
 
     const [reports, setReports] = useState([]);
 
@@ -83,10 +82,11 @@ const ReportRunner = props => {
 
     return (
         <div>
-
-            <Button className={classes.button} onClick={showAllReports}>Show all reports</Button>
+            <div className={classes.brand}>
+                <Button className={classes.button} onClick={showAllReports}>Show all reports</Button></div>
             <InputGroup>
-                <InputGroupAddon addonType="prepend"><Button className={classes.button} onClick={getReportById}>Show report with id</Button>
+                <InputGroupAddon addonType="prepend"><Button className={classes.button} onClick={getReportById}>Show
+                    report by id</Button>
                 </InputGroupAddon>
                 <Input type="text"
                        placeholder="Please enter id"
@@ -102,18 +102,18 @@ const ReportRunner = props => {
             {/*<div><Paginator reports={reports} /></div>*/}
 
 
-           <div className={classes.brand}> <ReactPaginate
-               previousLabel={"←"}
-               nextLabel={"→"}
-               breakLabel={'...'}
-               pageCount={pageCount}
-               onPageChange={handlePageClick}
-               previousLinkClassName={"pagination__link"}
-               nextLinkClassName={"pagination__link"}
-               disabledClassName={"pagination__link--disabled"}
-               activeClassName={"pagination__link--active"}
-               containerClassName={'pagination'}
-           /></div>
+            <div className={classes.brand}><ReactPaginate
+                previousLabel={"←"}
+                nextLabel={"→"}
+                breakLabel={'...'}
+                pageCount={pageCount}
+                onPageChange={handlePageClick}
+                previousLinkClassName={"pagination__link"}
+                nextLinkClassName={"pagination__link"}
+                disabledClassName={"pagination__link--disabled"}
+                activeClassName={"pagination__link--active"}
+                containerClassName={'pagination'}
+            /></div>
         </div>);
 };
 
