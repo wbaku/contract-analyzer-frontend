@@ -100,18 +100,20 @@ const ReportRunner = props => {
                 {isError && <div>{reportById}</div>}
             </ListGroup>
             {/*<div><Paginator reports={reports} /></div>*/}
-            <ReactPaginate
-                previousLabel={"←"}
-                nextLabel={"→"}
-                breakLabel={'...'}
-                pageCount={pageCount}
-                onPageChange={handlePageClick}
-                previousLinkClassName={"pagination__link"}
-                nextLinkClassName={"pagination__link"}
-                disabledClassName={"pagination__link--disabled"}
-                activeClassName={"pagination__link--active"}
-                containerClassName={'pagination'}
-            />
+
+
+           <div className={classes.brand}> <ReactPaginate
+               previousLabel={"←"}
+               nextLabel={"→"}
+               breakLabel={'...'}
+               pageCount={pageCount}
+               onPageChange={handlePageClick}
+               previousLinkClassName={"pagination__link"}
+               nextLinkClassName={"pagination__link"}
+               disabledClassName={"pagination__link--disabled"}
+               activeClassName={"pagination__link--active"}
+               containerClassName={'pagination'}
+           /></div>
         </div>);
 };
 

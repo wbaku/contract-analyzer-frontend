@@ -6,10 +6,10 @@
 }
 
 .pagination a {
-    padding: 5px;
+    padding: 3px;
     color: salmon;
     text-decoration: none;
-
+    background-color: mediumslateblue;
 }
 
 .pagination__link {
@@ -17,8 +17,9 @@
 }
 
 .pagination__link--active a {
+    font-weight: bold;
     color: salmon;
-    background: #6c7ac9;
+    background: aqua;
 }
 
 .pagination__link--disabled a {
