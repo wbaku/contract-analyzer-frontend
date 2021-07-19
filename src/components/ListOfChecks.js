@@ -7,7 +7,7 @@ const ListOfChecks = (props) => {
 
 
     const [selectedChecks, setSelected] = useState([]);
-    const [, forceUpdate] = useReducer(x => x + 1, 0);
+    // const [, forceUpdate] = useReducer(x => x + 1, 0);
 
     const onResetButtonClick = (selected) => {
 
@@ -23,7 +23,7 @@ const ListOfChecks = (props) => {
         console.log(selectedChecks)
         setSelected(selectedChecks)
         props.checkHandler(selectedChecks)
-        forceUpdate();
+        // forceUpdate();
     }
 
     const howManySelected = (check) => {
