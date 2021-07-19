@@ -52,7 +52,7 @@ const CheckRunner = (props) => {
             })
 
             if (!response.ok) {
-                throw new Error('Something went wrong here:')
+                throw new Error('Something went wrong here!')
             }
 
         }} catch (error) {
@@ -80,7 +80,7 @@ const CheckRunner = (props) => {
                        onChange={userInputHandler}/>
             </InputGroup>
 
-            <p className={classes.report}>
+            <p className={classes.reporPassed}>
                 {error ? <b>{error}</b> :null}
                 {report.includes('id') ? <b>Your check was run and produced the following report: </b> : null} <br/>
                 {report}

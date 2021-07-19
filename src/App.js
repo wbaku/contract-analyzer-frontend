@@ -33,7 +33,7 @@ function App() {
         }
         return fetchListOfChecks
 
-    }, [])
+    }, [setListOfChecks,setError])
 
     const checkHandler = check => {
 

@@ -2,7 +2,6 @@ import React, {useReducer, useState} from "react";
 import {Button, ButtonGroup, ListGroup} from "reactstrap";
 import classes from "./Styles.module.css";
 import Counter from "./Counter";
-import List from "reactstrap/es/List";
 
 const ListOfChecks = (props) => {
 
@@ -30,8 +29,6 @@ const ListOfChecks = (props) => {
     const howManySelected = (check) => {
         return selectedChecks.filter(x => x === check).length
     }
-
-
     const onCheckClick = (selected) => {
 
         // const index = selectedChecks.indexOf(selected);
@@ -47,7 +44,7 @@ const ListOfChecks = (props) => {
 
     const list = props.checks.map((check) =>
         <ButtonGroup><Button className={classes.button} onClick={() => onCheckClick(check)}
-                     active={selectedChecks.includes(check)}>
+                             active={selectedChecks.includes(check)}>
             {check}<Counter onClick={() => onResetButtonClick(check)} count={howManySelected(check)}/>
         </Button>
             <button className={classes.resetButton} onClick={() => onResetButtonClick(check)}>×</button>

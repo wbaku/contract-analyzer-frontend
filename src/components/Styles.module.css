@@ -57,8 +57,18 @@
     text-decoration: none;
 }
 
-.report {
+.reporPassed {
     color: chartreuse;
+    background-color: teal;
+    padding: 1rem;
+    font-size: small;
+    text-decoration: none !important;
+
+}
+
+
+.reportFailed {
+    color: red;
     background-color: teal;
     padding: 1rem;
     font-size: small;

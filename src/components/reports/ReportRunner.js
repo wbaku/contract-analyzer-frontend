@@ -94,7 +94,7 @@ const ReportRunner = props => {
                        onChange={userInputHandler}
                 />
             </InputGroup>
-            <ListGroup className={classes.report}>
+            <ListGroup className={classes.reporPassed}>
                 {currentPageData}
                 {!isError && <ReportViewer report={reportById}/>}
                 {isError && <div>{reportById}</div>}
