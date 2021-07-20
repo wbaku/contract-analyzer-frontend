@@ -29,7 +29,7 @@ const ReportRunner = props => {
         );
     const pageCount = Math.ceil(reports.length / PER_PAGE);
 
-    const {keycloak, initialized} = useKeycloak();
+    const {keycloak} = useKeycloak();
 
     async function showAllReports() {
         setReportById('')

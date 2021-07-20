@@ -1,4 +1,4 @@
-import React, {useReducer, useState} from "react";
+import React, {useState} from "react";
 import {Button, ButtonGroup, ListGroup} from "reactstrap";
 import classes from "./Styles.module.css";
 import Counter from "./Counter";
@@ -7,6 +7,8 @@ const ListOfChecks = (props) => {
 
 
     const [selectedChecks, setSelected] = useState([]);
+
+
     // const [, forceUpdate] = useReducer(x => x + 1, 0);
 
     const onResetButtonClick = (selected) => {

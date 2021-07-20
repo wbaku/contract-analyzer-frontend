@@ -15,7 +15,7 @@ const CheckRunner = (props) => {
     const [error, setError] = useState(null)
 
 
-    const {keycloak, initialized} = useKeycloak();
+    const {keycloak} = useKeycloak();
 
     async function runCheck() {
 
