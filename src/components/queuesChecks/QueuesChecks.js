@@ -7,6 +7,8 @@ const QueuesChecks = props => {
 
     const kafkaCheckToRun = props.kafkaCheckToRun;
 
+    const errorMessage = "Error! Invalid input or a problem on the server side";
+
     const incomingTopicInputRef = useRef();
     const outgoingTopicInputRef = useRef();
     const hostInputRef = useRef();
@@ -14,10 +16,17 @@ const QueuesChecks = props => {
 
     const [kafkaCheckReport, setKafkaCheckReport] = useState('');
 
+    const [error, setError] = useState('');
+
+    const [sending, setSending] = useState('');
+
     const {keycloak, initialized} = useKeycloak();
 
     async function runKafkaCheck(incomingTopic, outgoingTopic, host, port) {
+        setError('');
 
+
+        setSending('Check is running, wait...')
         let response = await fetch('/kafkaCheck/' + kafkaCheckToRun + '/run' +
             '?incomingTopic=' + incomingTopic + '&outgoingTopic=' + outgoingTopic +
             '&host=' + host + '&port=' + port, {
@@ -28,9 +37,12 @@ const QueuesChecks = props => {
                 'Content-Type': 'application/json'
             },
         });
+        setSending('');
 
-        if (response.status !== 200)
-            console.log("Oh!")
+        if (response.status !== 200) {
+            console.log(response);
+            setError(errorMessage);
+        }
         else {
             const kafkaCheckReport = await response.json();
             setKafkaCheckReport(kafkaCheckReport);
@@ -88,7 +100,8 @@ const QueuesChecks = props => {
             </InputGroup>
                     <Button type="submit">Run check</Button>
         </Form>
-        <ReportViewer report={kafkaCheckReport} />
+            {sending}
+            {error.length === 0 ? <ReportViewer report={kafkaCheckReport} /> : error}
         </>
     )
 }
