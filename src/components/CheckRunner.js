@@ -19,6 +19,11 @@ const CheckRunner = (props) => {
 
     async function runCheck() {
 
+
+        if (!keycloak.authenticated) {
+            alert("You're not logged in, please log in or check keycloak server")
+        }
+
         let response;
         if (String(checkToRun).length === 0) {
             alert("Please choose checks to run first.")

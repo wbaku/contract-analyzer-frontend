@@ -9,14 +9,18 @@ const QueuesChecks = props => {
 
     const incomingTopicInputRef = useRef();
     const outgoingTopicInputRef = useRef();
-    const hostInputRef = useRef();
-    const portInputRef = useRef();
+    const hostInputRef = useRef('kafka');
+    const portInputRef = useRef('29092');
 
     const [kafkaCheckReport, setKafkaCheckReport] = useState('');
 
-    const {keycloak, initialized} = useKeycloak();
+    const {keycloak} = useKeycloak();
 
     async function runKafkaCheck(incomingTopic, outgoingTopic, host, port) {
+
+        if (!keycloak.authenticated) {
+            alert("You're not logged in, please log in or check keycloak server")
+        }
 
         let response = await fetch('/kafkaCheck/' + kafkaCheckToRun + '/run' +
             '?incomingTopic=' + incomingTopic + '&outgoingTopic=' + outgoingTopic +
